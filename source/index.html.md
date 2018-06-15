@@ -34,11 +34,11 @@ curl "api_endpoint_here"
 
 > Make sure to replace `YOUR_API_KEY` with your API key.
 
-CarHopper uses API keys to allow access to the API. You can get a CarHopper API key from your CarHopper profile page.
+CarHopper uses API keys to allow access to the API. You can get a CarHopper API key from your CarHopper profile page. Be sure to use "Copy Link" in order to have it coppied the right way.
 
 CarHopper expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImJhYmE1OTM3M2MzNDN`
+`Authorization: Bearer YOUR_API_KEY`
 
 <aside class="warning">
 You must replace <code>YOUR_API_KEY</code> with your personal API key.
@@ -105,6 +105,61 @@ phone | string | Phone number of the renter.
 license_number | int | License number of the renter
 license_state | string | Order results by `priceAsc, priceDesc, distanceAsc`
 delivery_address | string | Delivery address
+
+
+## Get
+
+This endpoint is returning created reservation.
+Only required field is <code>reservation_id</code>
+
+```shell
+curl "https://carhopper.co/api/v1/reservation/115"
+-H "Authorization: Bearer YOUR_API_KEY"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "id": 42,
+    "user_id": 24,
+    "car_id": 84,
+    "contact_email": null,
+    "delivery": 0,
+    "delivery_price": "0.00",
+    "price": "3.00",
+    "days": 1,
+    "service_fee": "0.75",
+    "what_you_pocket": null,
+    "carhopper_fee": null,
+    "age_19_20_fee": null,
+    "age_21_25_fee": null,
+    "suv_fee": null,
+    "car_age_fee": null,
+    "discount": "0.00",
+    "total_price": "3.75",
+    "insurance": null,
+    "extras": null,
+    "coupon_id": null,
+    "start_at": "2016-07-24 04:00:00",
+    "end_at": "2016-07-26 04:00:00",
+    "created_at": "2015-09-29 11:09:24",
+    "responded_at": "2015-09-29 12:27:09",
+    "deleted_at": null,
+    "status": "paid",
+    "referral_discount": "0.00",
+    "auto_decline": 1,
+    "delivery_address": null,
+    "company_commission": null,
+    "notes": null,
+    "coupon": null
+}
+```
+
+### HTTP Request
+
+`GET https://carhopper.co/api/v1/reservation/<ID>`
+
 
 
 ## Cancel
@@ -189,56 +244,58 @@ curl "https://carhopper.co/api/v1/search"
 		"Audi": 1
 	},
 	"cars": [{
-		"id": 343,
-		"avatar": "uploads\/1567\/thumb\/phpMqMQNC.jpg",
-		"longitude": -80.1898443,
-		"latitude": 25.8099336,
-		"state_code": "",
-		"city": "Miami",
-		"state": "Florida",
-		"country": "United States",
-		"zip_code": "33137",
-		"category": "Sedan",
-		"gps": 0,
-		"all_wheel_drive": 0,
-		"audio_input": 1,
-		"pet_friendly": 0,
-		"sunroof": 1,
-		"bike_rack": 0,
-		"convertible": 0,
-		"parking_aid": 1,
-		"description": "Although we have Mercedes-Benz to thank for the oxymoronic \u201c4-door coupe\u201d category, Audi has gone one better with its A7 5-door coupe. Actually a 5-door liftback with a generous cargo hold and stunning silhouette, the 2014 Audi A7 incorporates everything right about Audi cars, from its stunning interior to its quattro all-wheel drive (AWD) to the myriad of engine choices and performance variants. Nestled nicely between the bread and butter A6 and the massive A8, the A7 holds special appeal to those who desire functionality and performance in an exclusive package that, while not appealing to everyone, is still attractive enough to catch everyone\u2019s eye.",
-		"color": "White",
-		"transmission_type": "Automatic",
-		"delivery": 0,
-		"delivery_price": "0.00",
-		"hourly_price": "0.00",
-		"daily_price": "360.00",
-		"weekly_price": "2700.00",
-		"monthly_price": "0.00",
-		"extra_sunpass_price": "10.00",
-		"extra_childseat_price": null,
-		"extra_gps_price": null,
-		"extra_delivery_price": "50.00",
-		"insurance_cdw_price": null,
-		"insurance_sli_price": null,
-		"insurance_pai_price": null,
-		"insurance_pec_price": null,
-		"insurance_rcp_price": null,
-		"deposit": 0,
-		"milage_limit": null,
-		"extra_milage": null,
-		"extra_promotion": null,
-		"model_make_id": "Audi",
-		"model_name": "RS 7",
-		"model_year": 2014,
-		"model_seats": null,
-		"model_doors": 4,
-		"location": {
-			"id": 1,
-			"name": "Miami, FL"
-		},
-		"area": null
+        "id": 1255,
+        "avatar": "http://carhopper.co/uploads/1800/thumb/ford-mustang-2017-red-Rcs28Xhu80.jpg",
+        "longitude": -80.15937079999998,
+        "latitude": 26.0699975,
+        "state_code": "FL",
+        "city": "Fort Lauderdale",
+        "state": "Florida",
+        "country": "United States",
+        "zip_code": "33315",
+        "category": "Convertible",
+        "gps": 0,
+        "all_wheel_drive": 0,
+        "audio_input": 1,
+        "pet_friendly": 0,
+        "sunroof": 0,
+        "bike_rack": 0,
+        "convertible": 0,
+        "parking_aid": 1,
+        "description": " ",
+        "color": "Red",
+        "transmission_type": "Automatic",
+        "delivery": 0,
+        "delivery_price": "0.00",
+        "hourly_price": "0.00",
+        "daily_price": "90.00",
+        "weekly_price": "630.00",
+        "monthly_price": "0.00",
+        "extra_sunpass_price": null,
+        "extra_childseat_price": null,
+        "extra_gps_price": null,
+        "extra_delivery_price": "50.00",
+        "insurance_cdw_price": "50.00",
+        "insurance_sli_price": null,
+        "insurance_pai_price": null,
+        "insurance_pec_price": null,
+        "insurance_rcp_price": null,
+        "deposit": 0,
+        "milage_limit": 150,
+        "extra_milage": "0.50",
+        "extra_promotion": null,
+        "model_make_id": "",
+        "model_name": "",
+        "model_year": null,
+        "model_seats": null,
+        "model_doors": null,
+        "locations": [
+            {
+                "id": 2,
+                "name": "Ft. Lauderdale, FL",
+            }
+        ],
+        "area": null
 	}],
 	"totalPageCount": 1
 }
@@ -348,46 +405,58 @@ curl "https://carhopper.co/api/v1/car/350"
 
 ```json
 {
-	"id": 350,
-	"avatar": "uploads\/1567\/thumb\/phpMqMQNC.jpg",
-	"longitude": -80.2608899,
-	"latitude": 25.7999398,
-	"state_code": "",
-	"city": "Miami",
-	"state": "Florida",
-	"country": "United States",
-	"zip_code": "33142",
-	"category": "Sedan",
-	"gps": 0,
-	"all_wheel_drive": 0,
-	"audio_input": 0,
-	"pet_friendly": 0,
-	"sunroof": 0,
-	"bike_rack": 0,
-	"convertible": 0,
-	"parking_aid": 1,
-	"description": "The 2016 Scion iM ushers in a new era of maturity for Toyota's youth-oriented brand.",
-	"color": "Silver",
-	"transmission_type": "Automatic",
-	"delivery": 0,
-	"delivery_price": "0.00",
-	"hourly_price": "0.00",
-	"daily_price": "100.00",
-	"weekly_price": "180.00",
-	"monthly_price": "0.00",
-	"extra_sunpass_price": "2.99",
-	"extra_childseat_price": null,
-	"extra_gps_price": null,
-	"extra_delivery_price": null,
-	"insurance_cdw_price": "15.00",
-	"insurance_sli_price": null,
-	"insurance_pai_price": null,
-	"insurance_pec_price": null,
-	"insurance_rcp_price": null,
-	"deposit": 0,
-	"milage_limit": null,
-	"extra_milage": null,
-	"extra_promotion": null
+    "id": 1255,
+    "avatar": "http://carhopper.co/uploads/1800/thumb/ford-mustang-2017-red-Rcs28Xhu80.jpg",
+    "longitude": -80.15937079999998,
+    "latitude": 26.0699975,
+    "state_code": "FL",
+    "city": "Fort Lauderdale",
+    "state": "Florida",
+    "country": "United States",
+    "zip_code": "33315",
+    "category": "Convertible",
+    "gps": 0,
+    "all_wheel_drive": 0,
+    "audio_input": 1,
+    "pet_friendly": 0,
+    "sunroof": 0,
+    "bike_rack": 0,
+    "convertible": 0,
+    "parking_aid": 1,
+    "description": " ",
+    "color": "Red",
+    "transmission_type": "Automatic",
+    "delivery": 0,
+    "delivery_price": "0.00",
+    "hourly_price": "0.00",
+    "daily_price": "90.00",
+    "weekly_price": "630.00",
+    "monthly_price": "0.00",
+    "extra_sunpass_price": null,
+    "extra_childseat_price": null,
+    "extra_gps_price": null,
+    "extra_delivery_price": "50.00",
+    "insurance_cdw_price": "50.00",
+    "insurance_sli_price": null,
+    "insurance_pai_price": null,
+    "insurance_pec_price": null,
+    "insurance_rcp_price": null,
+    "deposit": 0,
+    "milage_limit": 150,
+    "extra_milage": "0.50",
+    "extra_promotion": null,
+    "model_make_id": "",
+    "model_name": "",
+    "model_year": null,
+    "model_seats": null,
+    "model_doors": null,
+    "locations": [
+        {
+            "id": 2,
+            "name": "Ft. Lauderdale, FL",
+        }
+    ],
+    "area": null
 }
 ```
 
