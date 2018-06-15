@@ -231,6 +231,9 @@
                     <a href="#create" class="toc-h2 toc-link" data-title="Reservation">Create</a>
                   </li>
                   <li>
+                    <a href="#get" class="toc-h2 toc-link" data-title="Reservation">Get</a>
+                  </li>
+                  <li>
                     <a href="#cancel" class="toc-h2 toc-link" data-title="Reservation">Cancel</a>
                   </li>
                   <li>
@@ -391,6 +394,51 @@ Remember to add authentication key to every request!
 <td>Delivery address</td>
 </tr>
 </tbody></table>
+<h2 id='get'>Get</h2>
+<p>This endpoint is returning created reservation.
+Only required field is <code>reservation_id</code></p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/reservation/115"</span>
+-H <span class="s2">"Authorization: Bearer YOUR_API_KEY"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"car_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">84</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contact_email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"delivery"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"delivery_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"days"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"service_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.75"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"what_you_pocket"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"carhopper_fee"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"age_19_20_fee"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"age_21_25_fee"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"suv_fee"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"car_age_fee"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3.75"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"insurance"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"extras"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"coupon_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"start_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-24 04:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"end_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-26 04:00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-09-29 11:09:24"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"responded_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-09-29 12:27:09"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"deleted_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"paid"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"referral_discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"auto_decline"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"delivery_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"company_commission"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"coupon"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET https://carhopper.co/api/v1/reservation/&lt;ID&gt;</code></p>
 <h2 id='cancel'>Cancel</h2>
 <p>This endpoint cancels the previously created reservation.
 Only required field is <code>reservation_id</code></p>
@@ -412,14 +460,14 @@ Only required field is <code>reservation_id</code></p>
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reservation doesn't exist"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-2'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/cancel/&lt;ID&gt;</code></p>
 <h2 id='complete'>Complete</h2>
 <p>This endpoint completes the reservation process.
 Only required field is <code>reservation_id</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/complete/5"</span>
   -H <span class="s2">"Authorization: Bearer YOUR_API_KEY"</span>
-</code></pre><h3 id='http-request-3'>HTTP Request</h3>
+</code></pre><h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/complete/&lt;ID&gt;</code></p>
 <h1 id='search'>Search</h1><h2 id='search-cars'>Search Cars</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/search"</span>
   -H <span class="s2">"Authorization: Bearer YOUR_API_KEY"</span>
@@ -504,7 +552,7 @@ Only required field is <code>reservation_id</code></p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all cars.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/search</code></p>
 <h3 id='query-parameters-2'>Query Parameters</h3>
 <table><thead>
@@ -579,7 +627,7 @@ Only required field is <code>reservation_id</code></p>
 <aside class="success">
 You can use location <code>id</code> to filter cars or get related areas.
 </aside>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/locations</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
@@ -610,7 +658,7 @@ You can use location <code>id</code> to filter cars or get related areas.
 <aside class="success">
 You can use area <code>id</code> to filter cars.
 </aside>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/areas</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
@@ -684,7 +732,7 @@ You can use area <code>id</code> to filter cars.
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"area"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-7'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/car/&lt;ID&gt;</code></p>
 <h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
