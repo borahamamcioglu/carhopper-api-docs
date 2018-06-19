@@ -244,59 +244,87 @@ curl "https://carhopper.co/api/v1/search"
 		"Audi": 1
 	},
 	"cars": [{
-        "id": 1255,
-        "avatar": "http://carhopper.co/uploads/1800/thumb/ford-mustang-2017-red-Rcs28Xhu80.jpg",
-        "longitude": -80.15937079999998,
-        "latitude": 26.0699975,
-        "state_code": "FL",
-        "city": "Fort Lauderdale",
-        "state": "Florida",
+        "id": 1379,
+        "avatar": "http://carhopper.co/uploads/2148/thumb/bmw-x3-2017-white-cNDRfHLyok.JPG",
+        "longitude": -118.39271329999997,
+        "latitude": 33.9460263,
+        "state_code": "CA",
+        "city": "Los Angeles",
+        "state": "California",
         "country": "United States",
-        "zip_code": "33315",
-        "category": "Convertible",
+        "zip_code": "90045",
+        "address": "6151 W Century Blvd, Los Angeles, CA 90045, USA",
+        "category": "SUV",
         "gps": 0,
         "all_wheel_drive": 0,
         "audio_input": 1,
         "pet_friendly": 0,
-        "sunroof": 0,
+        "sunroof": 1,
         "bike_rack": 0,
         "convertible": 0,
         "parking_aid": 1,
         "description": " ",
-        "color": "Red",
+        "color": "White",
         "transmission_type": "Automatic",
-        "delivery": 0,
         "delivery_price": "0.00",
         "hourly_price": "0.00",
-        "daily_price": "90.00",
-        "weekly_price": "630.00",
+        "daily_price": "150.00",
+        "weekly_price": "900.00",
         "monthly_price": "0.00",
         "extra_sunpass_price": null,
         "extra_childseat_price": null,
         "extra_gps_price": null,
-        "extra_delivery_price": "50.00",
-        "insurance_cdw_price": "50.00",
+        "extra_delivery_price": "40.00",
+        "insurance_cdw_price": "30.00",
         "insurance_sli_price": null,
         "insurance_pai_price": null,
         "insurance_pec_price": null,
         "insurance_rcp_price": null,
         "deposit": 0,
         "milage_limit": 150,
-        "extra_milage": "0.50",
+        "extra_milage": "0.35",
         "extra_promotion": null,
-        "model_make_id": "",
-        "model_name": "",
-        "model_year": null,
+        "model_make_id": "Bmw",
+        "model_name": "X3",
+        "model_year": 2017,
+        "model_trim": "",
         "model_seats": null,
         "model_doors": null,
-        "locations": [
+        "images": [
             {
-                "id": 2,
-                "name": "Ft. Lauderdale, FL",
+                "title": "Bmw X3 2017 White",
+                "url": "uploads/2148/bmw-x3-2017-white-9vodFLMxvn.JPG",
+                "thumb_url": "uploads/2148/thumb/bmw-x3-2017-white-cNDRfHLyok.JPG",
+                "mobile_url": "uploads/2148/mobile/bmw-x3-2017-white-QGGtSEFWl7.JPG"
+            },
+            {
+                "title": "Bmw X3 2017 White",
+                "url": "uploads/2148/bmw-x3-2017-white-IYwEJlhImo.JPG",
+                "thumb_url": "uploads/2148/thumb/bmw-x3-2017-white-3yY6FetBLH.JPG",
+                "mobile_url": "uploads/2148/mobile/bmw-x3-2017-white-4HdU3XkFhJ.JPG"
+            },
+            {
+                "title": "Bmw X3 2017 White",
+                "url": "uploads/2148/bmw-x3-2017-white-rA2AXGgMB3.JPG",
+                "thumb_url": "uploads/2148/thumb/bmw-x3-2017-white-JE0K3QpIwD.JPG",
+                "mobile_url": "uploads/2148/mobile/bmw-x3-2017-white-t0StfY0qUI.JPG"
+            },
+            {
+                "title": "Bmw X3 2017 White",
+                "url": "uploads/2148/bmw-x3-2017-white-SQSF1gt16R.JPG",
+                "thumb_url": "uploads/2148/thumb/bmw-x3-2017-white-kvzHvFHMtQ.JPG",
+                "mobile_url": "uploads/2148/mobile/bmw-x3-2017-white-TnZ5BUJ5n7.JPG"
             }
         ],
-        "area": null
-	}],
+        "location": {
+            "id": 5,
+            "name": "Los Angeles, CA"
+        },
+        "area": {
+            "id": 10,
+            "name": "Airport proximity"
+        }
+    }],
 	"totalPageCount": 1
 }
 ```
@@ -405,58 +433,86 @@ curl "https://carhopper.co/api/v1/car/350"
 
 ```json
 {
-    "id": 1255,
-    "avatar": "http://carhopper.co/uploads/1800/thumb/ford-mustang-2017-red-Rcs28Xhu80.jpg",
-    "longitude": -80.15937079999998,
-    "latitude": 26.0699975,
-    "state_code": "FL",
-    "city": "Fort Lauderdale",
-    "state": "Florida",
+    "id": 1379,
+    "avatar": "http://carhopper.co/uploads/2148/thumb/bmw-x3-2017-white-cNDRfHLyok.JPG",
+    "longitude": -118.39271329999997,
+    "latitude": 33.9460263,
+    "state_code": "CA",
+    "city": "Los Angeles",
+    "state": "California",
     "country": "United States",
-    "zip_code": "33315",
-    "category": "Convertible",
+    "zip_code": "90045",
+    "address": "6151 W Century Blvd, Los Angeles, CA 90045, USA",
+    "category": "SUV",
     "gps": 0,
     "all_wheel_drive": 0,
     "audio_input": 1,
     "pet_friendly": 0,
-    "sunroof": 0,
+    "sunroof": 1,
     "bike_rack": 0,
     "convertible": 0,
     "parking_aid": 1,
     "description": " ",
-    "color": "Red",
+    "color": "White",
     "transmission_type": "Automatic",
-    "delivery": 0,
     "delivery_price": "0.00",
     "hourly_price": "0.00",
-    "daily_price": "90.00",
-    "weekly_price": "630.00",
+    "daily_price": "150.00",
+    "weekly_price": "900.00",
     "monthly_price": "0.00",
     "extra_sunpass_price": null,
     "extra_childseat_price": null,
     "extra_gps_price": null,
-    "extra_delivery_price": "50.00",
-    "insurance_cdw_price": "50.00",
+    "extra_delivery_price": "40.00",
+    "insurance_cdw_price": "30.00",
     "insurance_sli_price": null,
     "insurance_pai_price": null,
     "insurance_pec_price": null,
     "insurance_rcp_price": null,
     "deposit": 0,
     "milage_limit": 150,
-    "extra_milage": "0.50",
+    "extra_milage": "0.35",
     "extra_promotion": null,
-    "model_make_id": "",
-    "model_name": "",
-    "model_year": null,
+    "model_make_id": "Bmw",
+    "model_name": "X3",
+    "model_year": 2017,
+    "model_trim": "",
     "model_seats": null,
     "model_doors": null,
-    "locations": [
+    "images": [
         {
-            "id": 2,
-            "name": "Ft. Lauderdale, FL",
+            "title": "Bmw X3 2017 White",
+            "url": "uploads/2148/bmw-x3-2017-white-9vodFLMxvn.JPG",
+            "thumb_url": "uploads/2148/thumb/bmw-x3-2017-white-cNDRfHLyok.JPG",
+            "mobile_url": "uploads/2148/mobile/bmw-x3-2017-white-QGGtSEFWl7.JPG"
+        },
+        {
+            "title": "Bmw X3 2017 White",
+            "url": "uploads/2148/bmw-x3-2017-white-IYwEJlhImo.JPG",
+            "thumb_url": "uploads/2148/thumb/bmw-x3-2017-white-3yY6FetBLH.JPG",
+            "mobile_url": "uploads/2148/mobile/bmw-x3-2017-white-4HdU3XkFhJ.JPG"
+        },
+        {
+            "title": "Bmw X3 2017 White",
+            "url": "uploads/2148/bmw-x3-2017-white-rA2AXGgMB3.JPG",
+            "thumb_url": "uploads/2148/thumb/bmw-x3-2017-white-JE0K3QpIwD.JPG",
+            "mobile_url": "uploads/2148/mobile/bmw-x3-2017-white-t0StfY0qUI.JPG"
+        },
+        {
+            "title": "Bmw X3 2017 White",
+            "url": "uploads/2148/bmw-x3-2017-white-SQSF1gt16R.JPG",
+            "thumb_url": "uploads/2148/thumb/bmw-x3-2017-white-kvzHvFHMtQ.JPG",
+            "mobile_url": "uploads/2148/mobile/bmw-x3-2017-white-TnZ5BUJ5n7.JPG"
         }
     ],
-    "area": null
+    "location": {
+        "id": 5,
+        "name": "Los Angeles, CA"
+    },
+    "area": {
+        "id": 10,
+        "name": "Airport proximity"
+    }
 }
 ```
 
