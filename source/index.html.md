@@ -121,38 +121,45 @@ curl "https://carhopper.co/api/v1/reservation/115"
 
 ```json
 {
-    "id": 42,
-    "user_id": 24,
-    "car_id": 84,
-    "contact_email": null,
-    "delivery": 0,
+    "id": 1508,
+    "user_id": 2783,
+    "car_id": 1379,
+    "contact_email": "customer@carhopper.co",
     "delivery_price": "0.00",
-    "price": "3.00",
+    "price": "180.00",
     "days": 1,
-    "service_fee": "0.75",
-    "what_you_pocket": null,
-    "carhopper_fee": null,
-    "age_19_20_fee": null,
-    "age_21_25_fee": null,
-    "suv_fee": null,
-    "car_age_fee": null,
-    "discount": "0.00",
-    "total_price": "3.75",
-    "insurance": null,
-    "extras": null,
-    "coupon_id": null,
-    "start_at": "2016-07-24 04:00:00",
-    "end_at": "2016-07-26 04:00:00",
-    "created_at": "2015-09-29 11:09:24",
-    "responded_at": "2015-09-29 12:27:09",
+    "discount": "18.00",
+    "total_price": "162.00",
+    "insurance": {
+        "details": [],
+        "total": 0
+    },
+    "extras": [],
+    "start_at": {
+        "date": "2018-08-10 00:00:00.000000",
+        "timezone_type": 3,
+        "timezone": "US/Eastern"
+    },
+    "end_at": {
+        "date": "2018-08-11 00:00:00.000000",
+        "timezone_type": 3,
+        "timezone": "US/Eastern"
+    },
+    "created_at": {
+        "date": "2018-06-19 10:06:13.000000",
+        "timezone_type": 3,
+        "timezone": "US/Eastern"
+    },
+    "responded_at": null,
     "deleted_at": null,
-    "status": "paid",
+    "status": "hold",
     "referral_discount": "0.00",
-    "auto_decline": 1,
     "delivery_address": null,
-    "company_commission": null,
-    "notes": null,
-    "coupon": null
+    "coupon": {
+        "id": 365,
+        "discount_percent": 10,
+        "discount_amount": "0.00"
+    }
 }
 ```
 
