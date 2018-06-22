@@ -314,7 +314,7 @@ Make sure to replace <code>CUSTOMER_TOKEN</code> with your customer API key.</p>
 
 <p>Some CarHopper API actions requires existing user to be authorized. You can get a CarHopper <code>CUSTOMER_TOKEN</code> from the customer&#39;s very first Reservation on Carhopper (if the account with the same email doesn&#39;t exist). You can store it within your users database for future use.</p>
 
-<p>If your user is already a Carhopper customer, you can prompt him to login with API <a href="#customer-login">Customer Login</a> endpoint.</p>
+<p>If your user is already a Carhopper Customer, you can prompt him to login with API <a href="#customer-login">Customer Login</a> endpoint.</p>
 <h2 id='customer-login'>Customer Login</h2><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
   -H <span class="s2">"Authorization: Bearer YOUR_API_KEY"</span>
@@ -337,12 +337,12 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 <tr>
 <td>email</td>
 <td>string</td>
-<td>Carhopper User&#39;s email</td>
+<td>Carhopper Customer&#39;s email</td>
 </tr>
 <tr>
 <td>password</td>
 <td>string</td>
-<td>Carhopper User&#39;s password</td>
+<td>Carhopper Customer&#39;s password</td>
 </tr>
 </tbody></table>
 <h1 id='reservation'>Reservation</h1><h2 id='create'>Create</h2>
@@ -440,10 +440,7 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 <td>Delivery address</td>
 </tr>
 </tbody></table>
-<h2 id='get'>Get</h2>
-<p>This endpoint is returning created reservation.
-Only required field is <code>reservation_id</code></p>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/reservation/115"</span>
+<h2 id='get'>Get</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/reservation/115"</span>
 -H <span class="s2">"Authorization: Bearer YOUR_API_KEY"</span>
 </code></pre>
 <blockquote>
@@ -490,8 +487,24 @@ Only required field is <code>reservation_id</code></p>
         </span><span class="s2">"discount_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-3'>HTTP Request</h3>
+</span></code></pre>
+<p>Get the existing reservation.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/reservation/&lt;ID&gt;</code></p>
+<h3 id='query-parameters-3'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>reservation_id</td>
+<td>int</td>
+<td>Reservation ID</td>
+</tr>
+</tbody></table>
 <h2 id='cancel'>Cancel</h2>
 <p>This endpoint cancels the previously created reservation.
 Only required field is <code>reservation_id</code></p>
@@ -635,7 +648,7 @@ Only required field is <code>reservation_id</code></p>
 <p>This endpoint retrieves all cars.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/search</code></p>
-<h3 id='query-parameters-3'>Query Parameters</h3>
+<h3 id='query-parameters-4'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
