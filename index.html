@@ -285,11 +285,7 @@
 <p>Welcome to the CarHopper API! You can use our API to access CarHopper API endpoints, which can search and create reservations for luxury cars in our database.</p>
 
 <p>We have language bindings in Shell. You can view code examples in the dark area to the right.</p>
-<h1 id='authentication'>Authentication</h1><h2 id='authorize-api-call'>Authorize API call</h2>
-<blockquote>
-<p>To authorize API call, use this code:</p>
-</blockquote>
-<pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+<h1 id='authentication'>Authentication</h1><h2 id='authorize-api-call'>Authorize API call</h2><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"api/endpoint/here"</span>
   -H <span class="s2">"Authorization: Bearer YOUR_API_KEY"</span>
 </code></pre>
@@ -302,17 +298,14 @@ curl <span class="s2">"api/endpoint/here"</span>
 <p><code>Authorization: Bearer YOUR_API_KEY</code></p>
 
 <p>CarHopper uses API keys to allow access to the API. You can get a CarHopper API key from your CarHopper profile page. Be sure to use &quot;Copy Link&quot; in order to have it coppied the right way.</p>
-<h2 id='authorize-carhopper-customer'>Authorize Carhopper Customer</h2>
-<blockquote>
-<p>To authorize cutomer for the API call, use this code:</p>
-</blockquote>
-<pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+<h2 id='authorize-carhopper-customer'>Authorize Carhopper Customer</h2><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"api/endpoint/here"</span>
   -H <span class="s2">"Authorization: Bearer YOUR_API_KEY"</span>
   -H <span class="s2">"Customer-Token: CUSTOMER_TOKEN"</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code>CUSTOMER_TOKEN</code> with your customer API key.</p>
+<p>Make sure to replace <code>YOUR_API_KEY</code> with your API key.
+Make sure to replace <code>CUSTOMER_TOKEN</code> with your customer API key.</p>
 </blockquote>
 
 <p>CarHopper expects for the Customer Token to be included in all API requests every request that requires customer customer authentication.</p>
@@ -322,16 +315,12 @@ curl <span class="s2">"api/endpoint/here"</span>
 <p>Some CarHopper API actions requires existing user to be authorized. You can get a CarHopper <code>CUSTOMER_TOKEN</code> from the customer&#39;s very first Reservation on Carhopper (if the account with the same email doesn&#39;t exist). You can store it within your users database for future use.</p>
 
 <p>If your user is already a Carhopper customer, you can prompt him to login with API <a href="#customer-login">Customer Login</a> endpoint.</p>
-<h2 id='customer-login'>Customer Login</h2>
-<blockquote>
-<p>To authorize cutomer for the API call, use this code:</p>
-</blockquote>
-<pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+<h2 id='customer-login'>Customer Login</h2><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
   -H <span class="s2">"Authorization: Bearer YOUR_API_KEY"</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code>CUSTOMER_TOKEN</code> with your customer API key.</p>
+<p>Make sure to replace <code>YOUR_API_KEY</code> with your API key.</p>
 </blockquote>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/login</code></p>
