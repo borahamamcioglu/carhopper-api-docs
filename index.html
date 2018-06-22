@@ -318,10 +318,10 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 <blockquote>
 <p>Make sure to replace <code>YOUR_API_KEY</code> with your API key.</p>
 </blockquote>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://carhopper.co/api/v1/login</code></p>
 
 <p>Use this endpoint to authorize existing Carhopper Customer and get <code>CUSTOMER_TOKEN</code>. </p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET https://carhopper.co/api/v1/login</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -341,11 +341,7 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 <td>Carhopper Customer&#39;s password</td>
 </tr>
 </tbody></table>
-<h1 id='reservation'>Reservation</h1><h2 id='create'>Create</h2>
-<p>This endpoint creates reservations.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET https://carhopper.co/api/v1/create</code></p>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/create"</span>
+<h1 id='reservation'>Reservation</h1><h2 id='create'>Create</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/create"</span>
   -H <span class="s2">"Authorization: Bearer YOUR_API_KEY"</span>
 </code></pre>
 <blockquote>
@@ -372,7 +368,11 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
       </span><span class="s2">"The email field is required."</span><span class="w">
    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='query-parameters-2'>Query Parameters</h3>
+</span></code></pre>
+<p>This endpoint creates reservations.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET https://carhopper.co/api/v1/create</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -718,25 +718,12 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Los Angeles"</span><span class="w">
 </span><span class="p">}]</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a CarHopper registered car locations.</p>
-
-<aside class="success">
-You can use location <code>id</code> to filter cars or get related areas.
-</aside>
+<p>This endpoint retrieves a CarHopper registered car locations.
+You can use location <code>id</code> to filter cars or get related areas in <a href="search">Search Endpoint</a>.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/locations</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>No parameters required</td>
-<td>-</td>
-</tr>
-</tbody></table>
+<p>No parameters required</p>
 <h2 id='areas'>Areas</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/areas?location_id=3"</span>
   -H <span class="s2">"Authorization: Bearer YOUR_API_KEY"</span>
 </code></pre>
@@ -749,22 +736,21 @@ You can use location <code>id</code> to filter cars or get related areas.
     </span><span class="s2">"location_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
 </span><span class="p">}]</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves areas related to given <code>location_id</code></p>
-
-<aside class="success">
-You can use area <code>id</code> to filter cars.
-</aside>
+<p>This endpoint retrieves areas related to given <code>location_id</code>.
+You can use area <code>id</code> to filter cars in <a href="search">Search Endpoint</a>.</p>
 <h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/areas</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Data Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
+<td><ID></td>
+<td>int</td>
 <td>The ID of the location that areas related to.</td>
 </tr>
 </tbody></table>
@@ -856,18 +842,22 @@ You can use area <code>id</code> to filter cars.
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Airport proximity"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='http-request-8'>HTTP Request</h3>
+</span></code></pre>
+<p>Gets the Car data.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/car/&lt;ID&gt;</code></p>
 <h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Data Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the car to get details.</td>
+<td><ID></td>
+<td>int</td>
+<td>Car ID</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
