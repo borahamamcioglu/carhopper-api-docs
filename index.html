@@ -318,7 +318,7 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 <p>Make sure to replace <code>YOUR_API_KEY</code> with your API key.</p>
 </blockquote>
 
-<p>Use this endpoint to authorize existing Carhopper Customer and get <code>CUSTOMER_TOKEN</code>. </p>
+<p>Use this endpoint to authorize existing Carhopper Customer and get the <code>CUSTOMER_TOKEN</code>. </p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/login</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
@@ -342,6 +342,7 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 </tbody></table>
 <h1 id='reservation'>Reservation</h1><h2 id='create'>Create</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/create"</span>
   -H <span class="s2">"Authorization: Bearer YOUR_API_KEY"</span>
+  -H <span class="s2">"Customer-Token: CUSTOMER_TOKEN"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -350,7 +351,9 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reservation created"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"reservation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">873</span><span class="w">
+        </span><span class="s2">"reservation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">873</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"checkout_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://carhopper.co/embed/checkout/9CcjNTpljPbWSEHfPcrEwHCNQnHtySt2HmkEXHyXtHXEWGQwip8SW3ilRg9M/873"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"customer_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9CcjNTpljPbWSEHfPcrEwHCNQnHtySt2HmkEXHyXtHXEWGQwip8SW3ilRg9M"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -368,7 +371,11 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint creates reservations.</p>
+<p>This endpoint creates car reservation. </p>
+
+<p>In case that user is new to the Carhopper system, a new one is created and <code>customer_token</code> will be in response. You can check in <a href="authorize-carhopper-customer">here</a> how to use it.</p>
+
+<p>Reservation Checkout URL will be provided in <code>checkout_url</code> as a part of the response. Customer will be redirected to this URL in order to pay for the reservation. Once the payment is done, canceled or failed, customer will be redirected to <code>return_url</code> you provided in the request.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/create</code></p>
 <h3 id='query-parameters-2'>Query Parameters</h3>
@@ -420,6 +427,11 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 <td>Phone number of the renter.</td>
 </tr>
 <tr>
+<td>country</td>
+<td>ISO 2-letter abbrevation</td>
+<td>Country of the renter</td>
+</tr>
+<tr>
 <td>license_number</td>
 <td>int</td>
 <td>License number of the renter</td>
@@ -427,12 +439,41 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 <tr>
 <td>license_state</td>
 <td>string</td>
-<td>Order results by <code>priceAsc, priceDesc, distanceAsc</code></td>
+<td>License state of the renter</td>
 </tr>
 <tr>
 <td>delivery_address</td>
 <td>string</td>
 <td>Delivery address</td>
+</tr>
+<tr>
+<td>return_url</td>
+<td>string</td>
+<td>Where to redirect customer after checkout is finished</td>
+</tr>
+</tbody></table>
+<h3 id='return-parameters'>Return Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>reservation_id</td>
+<td>int</td>
+<td>ID of created Reservation</td>
+</tr>
+<tr>
+<td>checkout_url</td>
+<td>string</td>
+<td>Reservation Checkout URL</td>
+</tr>
+<tr>
+<td>customer_token</td>
+<td>string</td>
+<td>Carhopper Customer Token (optional)</td>
 </tr>
 </tbody></table>
 <h2 id='get'>Get</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/reservation/115"</span>
