@@ -16,52 +16,86 @@ search: true
 
 # Introduction
 
-Welcome to the CarHopper API! You can use our API to access CarHopper API endpoints, which can search and create reservations for luxury cars in our database.
-
-We have language bindings in Shell. You can view code examples in the dark area to the right.
+Welcome to the CarHopper API! You can use it to search, review and book luxury cars.
+You can view Shell code examples in the dark area to the right.
 
 # Authentication
 
-> To authorize, use this code:
+## Authorize API call
 
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
+curl "https://carhopper.co/api/v1/some/endpoint"
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
-
 > Make sure to replace `YOUR_API_KEY` with your API key.
 
-CarHopper uses API keys to allow access to the API. You can get a CarHopper API key from your CarHopper profile page. Be sure to use "Copy Link" in order to have it coppied the right way.
-
-CarHopper expects for the API key to be included in all API requests to the server in a header that looks like the following:
+CarHopper expects the API key to be included in a header, for all API requests to the server.
 
 `Authorization: Bearer YOUR_API_KEY`
 
-<aside class="warning">
-You must replace <code>YOUR_API_KEY</code> with your personal API key.
-</aside>
+You can get a CarHopper API key from your CarHopper profile page. Be sure to use "Copy Link" in order to have it coppied the right way.
 
-<aside class="warning">
-Remember to add authentication key to every request!
-</aside>
+
+## Authorize Carhopper Customer
+
+
+```shell
+# With shell, you can just pass the correct header with each request
+curl "https://carhopper.co/api/v1/some/endpoint"
+  -H "Authorization: Bearer YOUR_API_KEY"
+  -H "Customer-Token: CUSTOMER_TOKEN"
+```
+
+> Make sure to replace `YOUR_API_KEY` with your API key, and `CUSTOMER_TOKEN` with your customer API key.
+
+Some CarHopper API actions require existing user to be authorized. You can get a CarHopper `CUSTOMER_TOKEN` from the customer's very first <a href="create">Reservation Create endpoint</a> on Carhopper (if the account with the same email doesn't exist). You can store it within your users database for future use.
+
+If your user is already a Carhopper Customer, you can prompt him to login with API <a href="#customer-login">Customer Login</a> endpoint.
+
+CarHopper expects the Customer Token heared to be included in every API request that requires customer authentication.
+
+`Customer-Token: CUSTOMER_TOKEN`
+
+
+## Customer Login
+
+
+```shell
+# With shell, you can just pass the correct header with each request
+curl "https://carhopper.co/api/v1/login"
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+> Make sure to replace `YOUR_API_KEY` with your API key.
+
+Use this endpoint to authorize existing Carhopper Customer and get the `CUSTOMER_TOKEN`. 
+
+
+### HTTP Request
+
+`GET https://carhopper.co/api/v1/login`
+
+
+### Query Parameters
+
+Parameter | Data Type | Description
+--------- | ----------- | -----------
+email | string | Carhopper Customer's email 
+password | string | Carhopper Customer's password
+
+
 
 # Reservation
 
 ## Create
 
-This endpoint creates reservations.
-
-### HTTP Request
-
-`GET https://carhopper.co/api/v1/create`
-
-
 ```shell
 curl "https://carhopper.co/api/v1/create"
   -H "Authorization: Bearer YOUR_API_KEY"
+  -H "Customer-Token: CUSTOMER_TOKEN"
 ```
 > The above command returns JSON structured like this:
 
@@ -70,7 +104,9 @@ curl "https://carhopper.co/api/v1/create"
 	"status": 1,
 	"message": "Reservation created",
 	"data": {
-		"reservation_id": 873
+		"reservation_id": 873,
+		"checkout_url": "https://carhopper.co/embed/checkout/9CcjNTpljPbWSEHfPcrEwHCNQnHtySt2HmkEXHyXtHXEWGQwip8SW3ilRg9M/873",
+		"customer_token": "9CcjNTpljPbWSEHfPcrEwHCNQnHtySt2HmkEXHyXtHXEWGQwip8SW3ilRg9M"
 	}
 }
 ```
@@ -90,6 +126,19 @@ curl "https://carhopper.co/api/v1/create"
 }
 ```
 
+This endpoint creates car reservation. 
+
+In case that user is new to the Carhopper system, a new one is created and `customer_token` will be in response. You can check in <a href="authorize-carhopper-customer">here</a> how to use it.
+
+Reservation Checkout URL will be provided in `checkout_url` as a part of the response. Customer will be redirected to this URL in order to pay for the reservation. Once the payment is done, canceled or failed, customer will be redirected to `return_url` you provided in the request.
+
+
+
+### HTTP Request
+
+`GET https://carhopper.co/api/v1/create`
+
+
 ### Query Parameters
 
 Parameter | Data Type | Description
@@ -102,15 +151,23 @@ firstname | string | Firt name of the renter
 lastname | string | Last name of the renter
 birthday | Date [YYYY-MM-DD] | Birthdate of the renter
 phone | string | Phone number of the renter.
+country | ISO 2-letter abbrevation | Country of the renter
 license_number | int | License number of the renter
-license_state | string | Order results by `priceAsc, priceDesc, distanceAsc`
+license_state | string | License state of the renter
 delivery_address | string | Delivery address
+return_url | string | Where to redirect customer after checkout is finished
+
+
+### Return Parameters
+
+Parameter | Data Type | Description
+--------- | ----------- | -----------
+reservation_id | int | ID of created Reservation
+checkout_url | string | Reservation Checkout URL
+customer_token | string | Carhopper Customer Token (optional)
 
 
 ## Get
-
-This endpoint is returning created reservation.
-Only required field is <code>reservation_id</code>
 
 ```shell
 curl "https://carhopper.co/api/v1/reservation/115"
@@ -163,16 +220,22 @@ curl "https://carhopper.co/api/v1/reservation/115"
 }
 ```
 
+Get the existing reservation.
+
+
 ### HTTP Request
 
 `GET https://carhopper.co/api/v1/reservation/<ID>`
 
 
+### Query Parameters
+
+Parameter | Data Type | Description
+--------- | ----------- | -----------
+reservation_id | int | Reservation ID
+
 
 ## Cancel
-
-This endpoint cancels the previously created reservation.
-Only required field is <code>reservation_id</code>
 
 ```shell
 curl "https://carhopper.co/api/v1/cancel/5"
@@ -197,25 +260,19 @@ curl "https://carhopper.co/api/v1/cancel/5"
 }
 ```
 
+This endpoint cancels the previously created reservation.
+
+
 ### HTTP Request
 
 `GET https://carhopper.co/api/v1/cancel/<ID>`
 
 
-## Complete
+### Query Parameters
 
-This endpoint completes the reservation process.
-Only required field is <code>reservation_id</code>
-
-
-```shell
-curl "https://carhopper.co/api/v1/complete/5"
-  -H "Authorization: Bearer YOUR_API_KEY"
-```
-
-### HTTP Request
-
-`GET https://carhopper.co/api/v1/complete/<ID>`
+Parameter | Data Type | Description
+--------- | ----------- | -----------
+reservation_id | int | Reservation ID
 
 
 # Search
@@ -338,9 +395,11 @@ curl "https://carhopper.co/api/v1/search"
 
 This endpoint retrieves all cars.
 
+
 ### HTTP Request
 
 `GET https://carhopper.co/api/v1/search`
+
 
 ### Query Parameters
 
@@ -354,6 +413,8 @@ location | int | Filter cars by their location
 area | int | Filter cars by their area
 page | int | Results pager
 orderBy | string | Order results by `priceAsc, priceDesc, distanceAsc`
+
+
 
 ## Locations
 
@@ -380,20 +441,19 @@ curl "https://carhopper.co/api/v1/locations"
 ```
 
 This endpoint retrieves a CarHopper registered car locations.
+You can use location `id` to filter cars or get related areas in <a href="search">Search Endpoint</a>.
 
-<aside class="success">
-You can use location <code>id</code> to filter cars or get related areas.
-</aside>
 
 ### HTTP Request
 
 `GET https://carhopper.co/api/v1/locations`
 
+
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-No parameters required | - 
+No parameters required
+
+
 
 ## Areas
 
@@ -401,7 +461,6 @@ No parameters required | -
 curl "https://carhopper.co/api/v1/areas?location_id=3"
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
-
 
 > The above command returns JSON structured like this:
 
@@ -413,21 +472,22 @@ curl "https://carhopper.co/api/v1/areas?location_id=3"
 }]
 ```
 
-This endpoint retrieves areas related to given <code>location_id</code>
+This endpoint retrieves areas related to given `location_id`.
+You can use area `id` to filter cars in <a href="search">Search Endpoint</a>.
 
-<aside class="success">
-You can use area <code>id</code> to filter cars.
-</aside>
 
 ### HTTP Request
 
 `GET https://carhopper.co/api/v1/areas`
 
+
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the location that areas related to.
+Parameter | Data Type | Description
+--------- | ----------- | -----------
+<ID> | int | The ID of the location that areas related to.
+
+
 
 ## Car Details
 
@@ -523,12 +583,16 @@ curl "https://carhopper.co/api/v1/car/350"
 }
 ```
 
+Gets the Car data.
+
+
 ### HTTP Request
 
 `GET https://carhopper.co/api/v1/car/<ID>`
 
+
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the car to get details.
+Parameter | Data Type | Description
+--------- | ----------- | -----------
+<ID> | int | Car ID
