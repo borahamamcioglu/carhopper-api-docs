@@ -374,10 +374,6 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 <p>This endpoint creates car reservation. </p>
 
 <p>In case that user is new to the Carhopper system, a new one is created and <code>customer_token</code> will be in response. You can check in <a href="authorize-carhopper-customer">here</a> how to use it.</p>
-
-<p>Reservation Checkout URL will be provided in <code>checkout_url</code> as a part of the response. Customer will be redirected to this URL in order to pay for the reservation. Once the payment is done, canceled or failed, customer will be redirected to <code>return_url</code> you provided in the request to our embed payment form. You must append this param to <code>checkout_url</code> when you are creating the request, and it needs to be URL encoded.</p>
-
-<p><code>https://carhopper.co/embed/checkout/[SOME_HASH]/873?return_url=https%3A%2F%2Fexample.com%2Fthankyou</code></p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/create</code></p>
 <h3 id='query-parameters-2'>Query Parameters</h3>
@@ -473,6 +469,15 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 <td>Carhopper Customer Token (optional)</td>
 </tr>
 </tbody></table>
+<h3 id='payment-embed-form'>Payment embed form</h3>
+<p>Reservation Checkout URL will be provided in <code>checkout_url</code> as a part of the response. Customer will be redirected to this URL in order to pay for the reservation. Once the payment is done, canceled or failed, customer will be redirected to <code>return_url</code> you provided in the request to our embed payment form. You must append this param to <code>checkout_url</code> when you are creating the request, and it needs to be URL encoded.</p>
+
+<blockquote>
+<p>Redirect URL with appended return URL parameter:
+<code>
+https://carhopper.co/embed/checkout/[SOME_HASH]/873?return_url=https%3A%2F%2Fexample.com%2Fthankyou
+</code></p>
+</blockquote>
 <h2 id='get'>Get</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/reservation/115"</span>
 -H <span class="s2">"Authorization: Bearer YOUR_API_KEY"</span>
 </code></pre>
