@@ -245,6 +245,9 @@
                     <a href="#get" class="toc-h2 toc-link" data-title="Reservation">Get</a>
                   </li>
                   <li>
+                    <a href="#get-all" class="toc-h2 toc-link" data-title="Reservation">Get all</a>
+                  </li>
+                  <li>
                     <a href="#cancel" class="toc-h2 toc-link" data-title="Reservation">Cancel</a>
                   </li>
               </ul>
@@ -475,9 +478,10 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="s2">"https://carhopper.co/embed/checkout/[SOME_HASH]/873?return_url=https%3A%2F%2Fexample.com%2Fthankyou"</span>
 </code></pre>
-<p>Reservation Checkout URL will be provided in <code>checkout_url</code> as a part of the response. Customer shoould be redirected to this URL in order to pay for the reservation. Once the payment is done, canceled or failed, customer will be redirected to <code>return_url</code> you provided in the request to our embed payment form. You must append this param to <code>checkout_url</code> when you are creating the request, and it needs to be URL encoded.</p>
+<p>Reservation Checkout URL will be provided in <code>checkout_url</code> as a part of the response. Customer shoould be redirected to this URL in order to pay for the reservation. Once the payment is done, canceled or failed, customer will be redirected to <code>return_url</code> you provided in the request to our embed payment form. You must append this parameter to <code>checkout_url</code> when you are creating the request, and it needs to be URL encoded.</p>
 <h2 id='get'>Get</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/reservation/115"</span>
--H <span class="s2">"Authorization: Bearer YOUR_API_KEY"</span>
+  -H <span class="s2">"Authorization: Bearer YOUR_API_KEY"</span>
+  -H <span class="s2">"Customer-Token: CUSTOMER_TOKEN"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -541,8 +545,104 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 <td>Reservation ID</td>
 </tr>
 </tbody></table>
+<h2 id='get-all'>Get all</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/reservations"</span>
+  -H <span class="s2">"Authorization: Bearer YOUR_API_KEY"</span>
+  -H <span class="s2">"Customer-Token: CUSTOMER_TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1508</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2783</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"car_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1379</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contact_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer@carhopper.co"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"delivery_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"180.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"days"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"162.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"insurance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"extras"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"start_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-10 00:00:00.000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timezone_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US/Eastern"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"end_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-11 00:00:00.000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timezone_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US/Eastern"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-19 10:06:13.000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timezone_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US/Eastern"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"responded_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"deleted_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hold"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"referral_discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"delivery_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"coupon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">365</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"discount_percent"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"discount_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1509</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2783</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"car_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1380</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contact_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer@carhopper.co"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"delivery_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"180.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"days"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"162.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"insurance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"extras"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"start_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-10 00:00:00.000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timezone_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US/Eastern"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"end_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-11 00:00:00.000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timezone_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US/Eastern"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-19 10:06:13.000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timezone_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US/Eastern"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"responded_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"deleted_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hold"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"referral_discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"delivery_address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"coupon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">365</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"discount_percent"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"discount_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Get the customer&#39;s existing reservation.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET https://carhopper.co/api/v1/reservations</code></p>
 <h2 id='cancel'>Cancel</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/cancel/5"</span>
   -H <span class="s2">"Authorization: Bearer YOUR_API_KEY"</span>
+  -H <span class="s2">"Customer-Token: CUSTOMER_TOKEN"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -561,7 +661,7 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint cancels the previously created reservation.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/cancel/&lt;ID&gt;</code></p>
 <h3 id='query-parameters-4'>Query Parameters</h3>
 <table><thead>
@@ -688,7 +788,7 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all cars.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/search</code></p>
 <h3 id='query-parameters-5'>Query Parameters</h3>
 <table><thead>
@@ -760,7 +860,7 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 </span></code></pre>
 <p>This endpoint retrieves a CarHopper registered car locations.
 You can use location <code>id</code> to filter cars or get related areas in <a href="search">Search Endpoint</a>.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/locations</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <p>No parameters required</p>
@@ -778,7 +878,7 @@ You can use location <code>id</code> to filter cars or get related areas in <a h
 </span></code></pre>
 <p>This endpoint retrieves areas related to given <code>location_id</code>.
 You can use area <code>id</code> to filter cars in <a href="search">Search Endpoint</a>.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/areas</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
@@ -884,7 +984,7 @@ You can use area <code>id</code> to filter cars in <a href="search">Search Endpo
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets the Car data.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/car/&lt;ID&gt;</code></p>
 <h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
