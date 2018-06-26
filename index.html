@@ -470,14 +470,12 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 </tr>
 </tbody></table>
 <h3 id='payment-embed-form'>Payment embed form</h3>
-<p>Reservation Checkout URL will be provided in <code>checkout_url</code> as a part of the response. Customer will be redirected to this URL in order to pay for the reservation. Once the payment is done, canceled or failed, customer will be redirected to <code>return_url</code> you provided in the request to our embed payment form. You must append this param to <code>checkout_url</code> when you are creating the request, and it needs to be URL encoded.</p>
-
 <blockquote>
-<p>Redirect URL with appended return URL parameter:
-<code>
-https://carhopper.co/embed/checkout/[SOME_HASH]/873?return_url=https%3A%2F%2Fexample.com%2Fthankyou
-</code></p>
+<p>Redirect URL with appended return URL parameter:</p>
 </blockquote>
+<pre class="highlight shell tab-shell"><code><span class="s2">"https://carhopper.co/embed/checkout/[SOME_HASH]/873?return_url=https%3A%2F%2Fexample.com%2Fthankyou"</span>
+</code></pre>
+<p>Reservation Checkout URL will be provided in <code>checkout_url</code> as a part of the response. Customer will be redirected to this URL in order to pay for the reservation. Once the payment is done, canceled or failed, customer will be redirected to <code>return_url</code> you provided in the request to our embed payment form. You must append this param to <code>checkout_url</code> when you are creating the request, and it needs to be URL encoded.</p>
 <h2 id='get'>Get</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/reservation/115"</span>
 -H <span class="s2">"Authorization: Bearer YOUR_API_KEY"</span>
 </code></pre>
