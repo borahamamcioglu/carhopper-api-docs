@@ -346,7 +346,7 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 <td>Carhopper Customer&#39;s password</td>
 </tr>
 </tbody></table>
-<h1 id='reservation'>Reservation</h1><h2 id='estimate'>Estimate</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/reservation/create"</span>
+<h1 id='reservation'>Reservation</h1><h2 id='estimate'>Estimate</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/reservation/estimate"</span>
   -H <span class="s2">"Authorization: Bearer YOUR_API_KEY"</span>
   -H <span class="s2">"Customer-Token: CUSTOMER_TOKEN"</span>
 </code></pre>
@@ -371,7 +371,61 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
         </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2430</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='create'>Create</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/reservation/create"</span>
+</span></code></pre>
+<p>This endpoint estimates car reservation for given dates.
+This endpoint requires <code>CUSTOMER_TOKEN</code>.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET https://carhopper.co/api/v1/reservation/create?start_at=20180910&amp;end_at=20181010&amp;car_id=1255</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>startDate</td>
+<td>Date [YYYY-MM-DD]</td>
+<td>Start date of rental</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>Date [YYYY-MM-DD]</td>
+<td>End date of rental</td>
+</tr>
+<tr>
+<td>make</td>
+<td>string []</td>
+<td>Filter cars by their makes</td>
+</tr>
+<tr>
+<td>category</td>
+<td>string []</td>
+<td>Filter cars by their categories</td>
+</tr>
+<tr>
+<td>location</td>
+<td>int</td>
+<td>Filter cars by their location</td>
+</tr>
+<tr>
+<td>area</td>
+<td>int</td>
+<td>Filter cars by their area</td>
+</tr>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>Results pager</td>
+</tr>
+<tr>
+<td>orderBy</td>
+<td>string</td>
+<td>Order results by <code>priceAsc, priceDesc, distanceAsc</code></td>
+</tr>
+</tbody></table>
+<h2 id='create'>Create</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/reservation/create"</span>
   -H <span class="s2">"Authorization: Bearer YOUR_API_KEY"</span>
   -H <span class="s2">"Customer-Token: CUSTOMER_TOKEN"</span>
 </code></pre>
@@ -405,9 +459,9 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 <p>This endpoint creates car reservation. </p>
 
 <p>In case that user is new to the Carhopper system, a new one is created and <code>customer_token</code> will be in response. You can check in <a href="authorize-carhopper-customer">here</a> how to use it.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/reservation/create</code></p>
-<h3 id='query-parameters-2'>Query Parameters</h3>
+<h3 id='query-parameters-3'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -519,7 +573,6 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
     </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2783</span><span class="p">,</span><span class="w">
     </span><span class="s2">"car_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1379</span><span class="p">,</span><span class="w">
     </span><span class="s2">"contact_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer@carhopper.co"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"delivery_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"180.00"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"days"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18.00"</span><span class="p">,</span><span class="w">
@@ -557,9 +610,9 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Get the existing reservation.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/reservation/&lt;ID&gt;</code></p>
-<h3 id='query-parameters-3'>Query Parameters</h3>
+<h3 id='query-parameters-4'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -586,7 +639,6 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
         </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2783</span><span class="p">,</span><span class="w">
         </span><span class="s2">"car_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1379</span><span class="p">,</span><span class="w">
         </span><span class="s2">"contact_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer@carhopper.co"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"delivery_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"180.00"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"days"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18.00"</span><span class="p">,</span><span class="w">
@@ -627,7 +679,6 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
         </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2783</span><span class="p">,</span><span class="w">
         </span><span class="s2">"car_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1380</span><span class="p">,</span><span class="w">
         </span><span class="s2">"contact_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer@carhopper.co"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"delivery_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"180.00"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"days"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18.00"</span><span class="p">,</span><span class="w">
@@ -666,7 +717,7 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>Get the customer&#39;s existing reservations.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/reservations</code></p>
 <h2 id='cancel'>Cancel</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/cancel/5"</span>
   -H <span class="s2">"Authorization: Bearer YOUR_API_KEY"</span>
@@ -689,9 +740,9 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint cancels the previously created reservation.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/reservation/cancel/&lt;ID&gt;</code></p>
-<h3 id='query-parameters-4'>Query Parameters</h3>
+<h3 id='query-parameters-5'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -753,11 +804,7 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
         </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">" "</span><span class="p">,</span><span class="w">
         </span><span class="s2">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"White"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"transmission_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Automatic"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"delivery_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"hourly_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"daily_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"weekly_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"900.00"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"monthly_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"extra_sunpass_price"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"extra_childseat_price"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"extra_gps_price"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -816,9 +863,9 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all cars.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/reservation/search</code></p>
-<h3 id='query-parameters-5'>Query Parameters</h3>
+<h3 id='query-parameters-6'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -888,7 +935,7 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 </span></code></pre>
 <p>This endpoint retrieves a CarHopper registered car locations.
 You can use location <code>id</code> to filter cars or get related areas in <a href="search">Search Endpoint</a>.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/locations</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <p>No parameters required</p>
@@ -906,7 +953,7 @@ You can use location <code>id</code> to filter cars or get related areas in <a h
 </span></code></pre>
 <p>This endpoint retrieves areas related to given <code>location_id</code>.
 You can use area <code>id</code> to filter cars in <a href="search">Search Endpoint</a>.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/areas</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
@@ -951,11 +998,7 @@ You can use area <code>id</code> to filter cars in <a href="search">Search Endpo
     </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">" "</span><span class="p">,</span><span class="w">
     </span><span class="s2">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"White"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"transmission_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Automatic"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"delivery_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"hourly_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"daily_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"150.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"weekly_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"900.00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"monthly_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"extra_sunpass_price"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"extra_childseat_price"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"extra_gps_price"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1012,7 +1055,7 @@ You can use area <code>id</code> to filter cars in <a href="search">Search Endpo
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets the Car data.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/car/&lt;ID&gt;</code></p>
 <h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
