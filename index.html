@@ -239,6 +239,9 @@
             <a href="#reservation" class="toc-h1 toc-link" data-title="Reservation">Reservation</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#estimate" class="toc-h2 toc-link" data-title="Reservation">Estimate</a>
+                  </li>
+                  <li>
                     <a href="#create" class="toc-h2 toc-link" data-title="Reservation">Create</a>
                   </li>
                   <li>
@@ -343,7 +346,32 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 <td>Carhopper Customer&#39;s password</td>
 </tr>
 </tbody></table>
-<h1 id='reservation'>Reservation</h1><h2 id='create'>Create</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/create"</span>
+<h1 id='reservation'>Reservation</h1><h2 id='estimate'>Estimate</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/reservation/create"</span>
+  -H <span class="s2">"Authorization: Bearer YOUR_API_KEY"</span>
+  -H <span class="s2">"Customer-Token: CUSTOMER_TOKEN"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"days"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2700</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"extras"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"delivery"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"insurance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"service_fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"surcharge"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"energy_recovery_fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">270</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"discount_percent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"referral_discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2430</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='create'>Create</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/reservation/create"</span>
   -H <span class="s2">"Authorization: Bearer YOUR_API_KEY"</span>
   -H <span class="s2">"Customer-Token: CUSTOMER_TOKEN"</span>
 </code></pre>
@@ -378,7 +406,7 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 
 <p>In case that user is new to the Carhopper system, a new one is created and <code>customer_token</code> will be in response. You can check in <a href="authorize-carhopper-customer">here</a> how to use it.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET https://carhopper.co/api/v1/create</code></p>
+<p><code>GET https://carhopper.co/api/v1/reservation/create</code></p>
 <h3 id='query-parameters-2'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -662,7 +690,7 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 </span></code></pre>
 <p>This endpoint cancels the previously created reservation.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
-<p><code>GET https://carhopper.co/api/v1/cancel/&lt;ID&gt;</code></p>
+<p><code>GET https://carhopper.co/api/v1/reservation/cancel/&lt;ID&gt;</code></p>
 <h3 id='query-parameters-4'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -677,7 +705,7 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 <td>Reservation ID</td>
 </tr>
 </tbody></table>
-<h1 id='search'>Search</h1><h2 id='search-cars'>Search Cars</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/search"</span>
+<h1 id='search'>Search</h1><h2 id='search-cars'>Search Cars</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://carhopper.co/api/v1/reservation/search"</span>
   -H <span class="s2">"Authorization: Bearer YOUR_API_KEY"</span>
 </code></pre>
 <blockquote>
@@ -789,7 +817,7 @@ curl <span class="s2">"https://carhopper.co/api/v1/login"</span>
 </span></code></pre>
 <p>This endpoint retrieves all cars.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
-<p><code>GET https://carhopper.co/api/v1/search</code></p>
+<p><code>GET https://carhopper.co/api/v1/reservation/search</code></p>
 <h3 id='query-parameters-5'>Query Parameters</h3>
 <table><thead>
 <tr>
