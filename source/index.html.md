@@ -90,10 +90,58 @@ password | string | Carhopper Customer's password
 
 # Reservation
 
+## Estimate
+
+```shell
+curl "https://carhopper.co/api/v1/reservation/estimate"
+  -H "Authorization: Bearer YOUR_API_KEY"
+  -H "Customer-Token: CUSTOMER_TOKEN"
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+    "status": 1,
+    "message": "",
+    "data": {
+        "days": 30,
+        "price": 2700,
+        "extras": 0,
+        "delivery": 20,
+        "insurance": 40,
+        "service_fee": 0,
+        "surcharge": 0,
+        "energy_recovery_fee": 0,
+        "discount": 270,
+        "discount_percent": 10,
+        "referral_discount": 0,
+        "total": 2490
+    }
+}
+```
+
+This endpoint estimates car reservation for given dates. If `country` is not provided it will be considered that renter is from out of USA and CDW insurance will be applyed.
+This endpoint requires `CUSTOMER_TOKEN`.
+
+
+### HTTP Request
+
+`GET https://carhopper.co/api/v1/reservation/create?start_at=20180910&end_at=20181010&car_id=1255&country=FR`
+
+
+### Query Parameters
+
+Parameter | Data Type | Description
+--------- | ----------- | -----------
+startDate | Date [YYYY-MM-DD] | Start date of rental 
+endDate | Date [YYYY-MM-DD] | End date of rental
+country | ISO 2-letter abbrevation | Renter's Licence Country
+
+
 ## Create
 
 ```shell
-curl "https://carhopper.co/api/v1/create"
+curl "https://carhopper.co/api/v1/reservation/create"
   -H "Authorization: Bearer YOUR_API_KEY"
   -H "Customer-Token: CUSTOMER_TOKEN"
 ```
@@ -128,15 +176,14 @@ curl "https://carhopper.co/api/v1/create"
 
 This endpoint creates car reservation. 
 
-In case that user is new to the Carhopper system, a new one is created and `customer_token` will be in response. You can check in <a href="authorize-carhopper-customer">here</a> how to use it.
+In case that user is new to the Carhopper system, a new one is created and `customer_token` will be in response. You can check in <a href="authorize-carhopper-customer">here</a> how to use it. If you already have `CUSTOMER_TOKEN`, include it in header of request.
 
-Reservation Checkout URL will be provided in `checkout_url` as a part of the response. Customer will be redirected to this URL in order to pay for the reservation. Once the payment is done, canceled or failed, customer will be redirected to `return_url` you provided in the request.
-
+If `country` is not provided it will be considered that renter is from out of USA and CDW insurance will be applyed.
 
 
 ### HTTP Request
 
-`GET https://carhopper.co/api/v1/create`
+`GET https://carhopper.co/api/v1/reservation/create`
 
 
 ### Query Parameters
@@ -151,11 +198,10 @@ firstname | string | Firt name of the renter
 lastname | string | Last name of the renter
 birthday | Date [YYYY-MM-DD] | Birthdate of the renter
 phone | string | Phone number of the renter.
-country | ISO 2-letter abbrevation | Country of the renter
+country | ISO 2-letter abbrevation | Renter's Licence Country
 license_number | int | License number of the renter
 license_state | string | License state of the renter
 delivery_address | string | Delivery address
-return_url | string | Where to redirect customer after checkout is finished
 
 
 ### Return Parameters
@@ -167,11 +213,22 @@ checkout_url | string | Reservation Checkout URL
 customer_token | string | Carhopper Customer Token (optional)
 
 
+###Payment embed form
+
+> Redirect URL with appended return URL parameter:
+
+```shell
+"https://carhopper.co/embed/checkout/[SOME_HASH]/873?return_url=https%3A%2F%2Fexample.com%2Fthankyou"
+```
+
+Reservation Checkout URL will be provided in `checkout_url` as a part of the response. Customer shoould be redirected to this URL in order to pay for the reservation. Once the payment is done, canceled or failed, customer will be redirected to `return_url` you provided in the request to our embed payment form. You must append this parameter to `checkout_url` when you are creating the request, and it needs to be URL encoded.
+
 ## Get
 
 ```shell
 curl "https://carhopper.co/api/v1/reservation/115"
--H "Authorization: Bearer YOUR_API_KEY"
+  -H "Authorization: Bearer YOUR_API_KEY"
+  -H "Customer-Token: CUSTOMER_TOKEN"
 ```
 
 > The above command returns JSON structured like this:
@@ -182,7 +239,6 @@ curl "https://carhopper.co/api/v1/reservation/115"
     "user_id": 2783,
     "car_id": 1379,
     "contact_email": "customer@carhopper.co",
-    "delivery_price": "0.00",
     "price": "180.00",
     "days": 1,
     "discount": "18.00",
@@ -234,12 +290,115 @@ Parameter | Data Type | Description
 --------- | ----------- | -----------
 reservation_id | int | Reservation ID
 
+## Get all
+
+```shell
+curl "https://carhopper.co/api/v1/reservations"
+  -H "Authorization: Bearer YOUR_API_KEY"
+  -H "Customer-Token: CUSTOMER_TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+	{
+	    "id": 1508,
+	    "user_id": 2783,
+	    "car_id": 1379,
+	    "contact_email": "customer@carhopper.co",
+	    "price": "180.00",
+	    "days": 1,
+	    "discount": "18.00",
+	    "total_price": "162.00",
+	    "insurance": {
+	        "details": [],
+	        "total": 0
+	    },
+	    "extras": [],
+	    "start_at": {
+	        "date": "2018-08-10 00:00:00.000000",
+	        "timezone_type": 3,
+	        "timezone": "US/Eastern"
+	    },
+	    "end_at": {
+	        "date": "2018-08-11 00:00:00.000000",
+	        "timezone_type": 3,
+	        "timezone": "US/Eastern"
+	    },
+	    "created_at": {
+	        "date": "2018-06-19 10:06:13.000000",
+	        "timezone_type": 3,
+	        "timezone": "US/Eastern"
+	    },
+	    "responded_at": null,
+	    "deleted_at": null,
+	    "status": "hold",
+	    "referral_discount": "0.00",
+	    "delivery_address": null,
+	    "coupon": {
+	        "id": 365,
+	        "discount_percent": 10,
+	        "discount_amount": "0.00"
+	    }
+	},
+	{
+	    "id": 1509,
+	    "user_id": 2783,
+	    "car_id": 1380,
+	    "contact_email": "customer@carhopper.co",
+	    "price": "180.00",
+	    "days": 1,
+	    "discount": "18.00",
+	    "total_price": "162.00",
+	    "insurance": {
+	        "details": [],
+	        "total": 0
+	    },
+	    "extras": [],
+	    "start_at": {
+	        "date": "2018-08-10 00:00:00.000000",
+	        "timezone_type": 3,
+	        "timezone": "US/Eastern"
+	    },
+	    "end_at": {
+	        "date": "2018-08-11 00:00:00.000000",
+	        "timezone_type": 3,
+	        "timezone": "US/Eastern"
+	    },
+	    "created_at": {
+	        "date": "2018-06-19 10:06:13.000000",
+	        "timezone_type": 3,
+	        "timezone": "US/Eastern"
+	    },
+	    "responded_at": null,
+	    "deleted_at": null,
+	    "status": "hold",
+	    "referral_discount": "0.00",
+	    "delivery_address": null,
+	    "coupon": {
+	        "id": 365,
+	        "discount_percent": 10,
+	        "discount_amount": "0.00"
+	    }
+	}
+]
+```
+
+Get the customer's existing reservations.
+
+
+### HTTP Request
+
+`GET https://carhopper.co/api/v1/reservations`
+
 
 ## Cancel
 
 ```shell
 curl "https://carhopper.co/api/v1/cancel/5"
   -H "Authorization: Bearer YOUR_API_KEY"
+  -H "Customer-Token: CUSTOMER_TOKEN"
 ```
 
 > The above command returns JSON structured like this:
@@ -265,7 +424,7 @@ This endpoint cancels the previously created reservation.
 
 ### HTTP Request
 
-`GET https://carhopper.co/api/v1/cancel/<ID>`
+`GET https://carhopper.co/api/v1/reservation/cancel/<ID>`
 
 
 ### Query Parameters
@@ -281,7 +440,7 @@ reservation_id | int | Reservation ID
 
 
 ```shell
-curl "https://carhopper.co/api/v1/search"
+curl "https://carhopper.co/api/v1/reservation/search"
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
@@ -330,11 +489,7 @@ curl "https://carhopper.co/api/v1/search"
 	    "description": " ",
 	    "color": "White",
 	    "transmission_type": "Automatic",
-	    "delivery_price": "0.00",
-	    "hourly_price": "0.00",
 	    "daily_price": "150.00",
-	    "weekly_price": "900.00",
-	    "monthly_price": "0.00",
 	    "extra_sunpass_price": null,
 	    "extra_childseat_price": null,
 	    "extra_gps_price": null,
@@ -398,7 +553,7 @@ This endpoint retrieves all cars.
 
 ### HTTP Request
 
-`GET https://carhopper.co/api/v1/search`
+`GET https://carhopper.co/api/v1/reservation/search`
 
 
 ### Query Parameters
@@ -522,11 +677,7 @@ curl "https://carhopper.co/api/v1/car/350"
     "description": " ",
     "color": "White",
     "transmission_type": "Automatic",
-    "delivery_price": "0.00",
-    "hourly_price": "0.00",
     "daily_price": "150.00",
-    "weekly_price": "900.00",
-    "monthly_price": "0.00",
     "extra_sunpass_price": null,
     "extra_childseat_price": null,
     "extra_gps_price": null,
