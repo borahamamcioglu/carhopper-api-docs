@@ -437,7 +437,7 @@ This endpoint requires <code>CUSTOMER_TOKEN</code>.</p>
 <p>In case that user is new to the Carhopper system, a new one is created and <code>customer_token</code> will be in response. You can check in <a href="authorize-carhopper-customer">here</a> how to use it. If you already have <code>CUSTOMER_TOKEN</code>, include it in header of request.</p>
 
 <p>If <code>country</code> is not USA - CDW insurance will be applyed. 
-If <code>country</code> is USA - renter&#39;s <code>insurance_policy</code> and <code>insurance_company_name</code> are required.</p>
+If <code>country</code> is USA - renter&#39;s <code>insurance_policy</code>, <code>insurance_company_name</code> and <code>license_state</code> are required.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET https://carhopper.co/api/v1/reservation/create</code></p>
 <h3 id='query-parameters-3'>Query Parameters</h3>
@@ -492,6 +492,11 @@ If <code>country</code> is USA - renter&#39;s <code>insurance_policy</code> and 
 <td>country</td>
 <td>ISO 2-letter abbrevation</td>
 <td>Renter&#39;s Licence Country</td>
+</tr>
+<tr>
+<td>state</td>
+<td>ISO 2-letter abbrevation</td>
+<td>Renter&#39;s Licence State if Country is US</td>
 </tr>
 <tr>
 <td>license_number</td>
