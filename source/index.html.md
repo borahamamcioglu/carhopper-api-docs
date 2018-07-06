@@ -120,7 +120,8 @@ curl "https://carhopper.co/api/v1/reservation/estimate"
 }
 ```
 
-This endpoint estimates car reservation for given dates. If `country` is not provided it will be considered that renter is from out of USA and CDW insurance will be applyed.
+This endpoint estimates car reservation for given dates. 
+If `country` is not USA, CDW insurance will be applyed.
 This endpoint requires `CUSTOMER_TOKEN`.
 
 
@@ -178,7 +179,8 @@ This endpoint creates car reservation.
 
 In case that user is new to the Carhopper system, a new one is created and `customer_token` will be in response. You can check in <a href="authorize-carhopper-customer">here</a> how to use it. If you already have `CUSTOMER_TOKEN`, include it in header of request.
 
-If `country` is not provided it will be considered that renter is from out of USA and CDW insurance will be applyed.
+If `country` is not USA - CDW insurance will be applyed. 
+If `country` is USA - renter's `insurance_policy`, `insurance_company_name` and `license_state` are required.
 
 
 ### HTTP Request
@@ -199,8 +201,11 @@ lastname | string | Last name of the renter
 birthday | Date [YYYY-MM-DD] | Birthdate of the renter
 phone | string | Phone number of the renter.
 country | ISO 2-letter abbrevation | Renter's Licence Country
+state | ISO 2-letter abbrevation | Renter's Licence State if Country is US
 license_number | int | License number of the renter
 license_state | string | License state of the renter
+insurance_policy | string | Insurance Policy of the renter
+insurance_company_name | string | Insurance Company of the renter
 delivery_address | string | Delivery address
 
 
