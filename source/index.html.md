@@ -71,6 +71,13 @@ curl "https://carhopper.co/api/v1/login"
 
 > Make sure to replace `YOUR_API_KEY` with your API key.
 
+```json
+{
+    "status": 1,
+    "customer_token": "jac08c4fb0buaoef0a8fha3hd0i3jdbf04hfai3hfa93iphdoa",
+}
+```
+
 Use this endpoint to authorize existing Carhopper Customer and get the `CUSTOMER_TOKEN`. 
 
 
@@ -85,6 +92,13 @@ Parameter | Data Type | Description
 --------- | ----------- | -----------
 email | string | Carhopper Customer's email 
 password | string | Carhopper Customer's password
+
+### Return Parameters
+
+Parameter | Data Type | Description
+--------- | ----------- | -----------
+status | int | Status flag (1 for success and 0 for fail)
+customer_token | string | Carhopper Customer Token
 
 
 
