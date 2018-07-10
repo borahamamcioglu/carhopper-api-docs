@@ -281,7 +281,7 @@ curl "https://carhopper.co/api/v1/reservation/115"
 }
 ```
 
-Get the existing reservation.
+Get the user's existing reservation.
 
 
 ### HTTP Request
@@ -390,7 +390,7 @@ curl "https://carhopper.co/api/v1/reservations"
 ]
 ```
 
-Get the customer's existing reservations.
+Get the customer's pending reservations.
 
 
 ### HTTP Request
