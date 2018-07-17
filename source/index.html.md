@@ -191,7 +191,7 @@ curl "https://carhopper.co/api/v1/reservation/create"
 
 This endpoint creates car reservation. 
 
-In case that user is new to the Carhopper system, a new one is created and `customer_token` will be in response. You can check in <a href="authorize-carhopper-customer">here</a> how to use it. If you already have `CUSTOMER_TOKEN`, include it in header of request.
+In case that user is new to the Carhopper system, a new one is created and `customer_token` will be in response. You can check in <a href="#authorize-carhopper-customer">here</a> how to use it. If you already have `CUSTOMER_TOKEN`, include it in header of request.
 
 If `country` is not USA - CDW insurance will be applyed. 
 If `country` is USA - renter's `insurance_policy`, `insurance_company_name` and `license_state` are required.
