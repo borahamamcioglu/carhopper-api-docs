@@ -561,7 +561,8 @@ curl "https://carhopper.co/api/v1/reservation/search"
 	    "area": {
 	        "id": 10,
 	        "name": "Airport proximity"
-	    }
+	    },
+        "pickup_text": "The exact address of this vehicle in Los Angeles will be emailed to you once your car is booked."
 	}],
 	"totalPageCount": 1
 }
@@ -749,7 +750,8 @@ curl "https://carhopper.co/api/v1/car/350"
     "area": {
         "id": 10,
         "name": "Airport proximity"
-    }
+    },
+    "pickup_text": "The exact address of this vehicle in Los Angeles will be emailed to you once your car is booked."
 }
 ```
 
